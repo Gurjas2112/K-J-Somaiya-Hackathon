@@ -10,7 +10,7 @@ with open('random_forest_model.pkl', 'rb') as model_file:
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('templates/final.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -30,8 +30,8 @@ def predict():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-    # Return the predicted score
-    return jsonify({'predicted_score': predicted_score})
+    # Render the modified HTML template with the predicted score
+    return render_template('templates/final.html', predicted_score=predicted_score)
 
 if __name__ == '__main__':
     app.run(debug=True)
