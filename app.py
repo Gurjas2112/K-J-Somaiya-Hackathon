@@ -1,37 +1,55 @@
-from flask import Flask, render_template, request, jsonify
-import pickle
 import numpy as np
+import pandas as pd 
+import joblib 
+from flask import render_template , request , Flask
+
 
 app = Flask(__name__)
 
-# Load the pre-trained Random Forest model
-with open('random_forest_model.pkl', 'rb') as model_file:
-    model = pickle.load(model_file)
+model = joblib.load('random_forest_model.pkl')
+df = pd.DataFrame()
 
 @app.route('/')
 def index():
-    return render_template('templates/final.html')
+    return render_template('final.html')
 
-@app.route('/predict', methods=['POST'])
+
+@app.route('/predict',methods=['GET','POST'])
 def predict():
-    # Get user inputs from the form
-    data = request.json['input_data']
-    
-    # Ensure the input data is a list
-    if not isinstance(data, list):
-        return jsonify({'error': 'Invalid input format. Expected a list of values.'}), 400
+    if request.method == 'POST':
+        global df
+        data = request.form  
+        features = []  
 
-    # Make predictions using the loaded model
-    try:
-        input_data = np.array(data).astype('float32')
-        input_data = input_data.reshape(1, -1)
-        prediction = model.predict(input_data)
-        predicted_score = prediction[0]
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
 
-    # Render the modified HTML template with the predicted score
-    return render_template('templates/final.html', predicted_score=predicted_score)
+        feature_names = ['percentage', 'educational_resources', 'parents_education',
+       'personality', 'passion', 'ott_time', 'sm_time', 'travel_time',
+       'eduvids_time', 'game_time', 'extra_time', 'ai_usage']
 
-if __name__ == '__main__':
-    app.run(debug=True)
+        for feature_name in feature_names:
+            feature_value = data.get(feature_name)
+            if feature_value is not None:
+                if feature_name == 'sub1' and feature_value.isdigit(): 
+                    features.append(int(feature_value))
+                else:
+                    features.append(feature_value)
+
+     
+        if len(features) == 12:
+            output = model.predict([features])[0].round(2)
+            print("Success")
+            if output <= 100:
+                result_message = f'If You study {data["travel_time"]} hours then You can get {output}% Marks'
+            else:
+                result_message = f'If You study {data["travel_time"]} hours then You can get 100% Marks'
+
+            df = pd.concat([df, pd.DataFrame({'study_time': data['travel_time'], 'predicted_score': [output]})],
+                           ignore_index=True)
+            print(df)
+            df.to_csv('performance.csv')
+
+            return render_template('final.html', predict=result_message)
+        else:
+            return render_template('final.html', predict='Mismatch in the number of features')
+app.run(debug=True)
+

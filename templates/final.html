@@ -69,19 +69,11 @@
 </head>
 <body>
     <h1>User Data</h1>
-    <form action='/predict' method="post" class="col s12">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="program">Program:</label>
-        <input type="text" id="program" name="program" required>
+    <form method="post" action="/predict">
         
         <label for="sub1">Subject1:</label>
-        <input type="number" id="sub1" name="sub1" min="0" max="100" required>
-        <label for="sub2">Subject2:</label>
-        <input type="number" id="sub2" name="sub2" min="0" max="100" required>
-        <label for="sub1">Subject3:</label>
-        <input type="number" id="sub3" name="sub3" min="0" max="100" required>
+        <input type="number" id="percentage" name="percentage" min="0" max="100" required>
+        
         
         <label for="educational_resources">Educational Resources:</label>
         <select id="educational_resources" name="educational_resources" required>
@@ -94,19 +86,19 @@
         <label for="parents_education">Parents' Education:</label>
         <select id="parents_education" name="parents_education" required>
            
-            <option value="below 10th">Below 10th</option>
-            <option value="12th">12th</option>
-            <option value="UG">UG</option>
-            <option value="PG">PG</option>
-            <option value="Dr">Dr</option>
+            <option value="below10">Below 10th</option>
+            <option value="12">12th</option>
+            <option value="undergraduate">UG</option>
+            <option value="postgraduate">PG</option>
+            <option value="PhD">PhD</option>
         </select>
         
         <label for="personality">Personality:</label>
          <select id="personality" name="personality" required>
            
-            <option value="introvert">Introvert</option>
-            <option value="extrovert">Extrovert</option>
-             <option value="ambivert">Ambivert</option>
+            <option value="introverted">Introvert</option>
+            <option value="extroverted">Extrovert</option>
+             <option value="ambiverted">Ambivert</option>
         </select>
         
         <label for="passion">Passion:</label>
@@ -143,6 +135,8 @@
         </select>
         
         <input type="submit" value="Submit" >
+        <p>{{ predict }}</p>
+
     </form>
    
 
