@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20pax;
+            
+            /* Add background image */
+            background-image: url('https://img.pikbest.com/wp/202343/watercolor-stain-drawing-circular-frame-background-texture-in-a-captivating-dark-green-shade-with-artistic-stains_9982642.jpg!sw800');
+            background-size: cover;
+            background-position: center;
+            /* position: relative; */
+            background-repeat: no-repeat;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #000000;
+            font-size: xx-large;
+        }
+        form {
+            max-width: 500px;
+            /* text-align: center; */
+            margin: 0 auto;
+            color: #000000;
+            font-size: medium;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #68c26b;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+        }
+        input[type="submit"]:hover {
+            background-color: #007406;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Data</h1>
+    <form action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="program">Program:</label>
+        <input type="text" id="program" name="program" required>
+        
+        <label for="percentage">Percentage:</label>
+        <input type="number" id="percentage" name="percentage" min="0" max="100" required>
+        
+        <label for="educational_resources">Educational Resources:</label>
+        <select id="educational_resources" name="educational_resources" required>
+           
+            <option value="good">Good</option>
+            <option value="medium">Medium</option>
+            <option value="satisfactory">Satisfactory</option>
+        </select>
+        
+        <label for="parents_education">Parents' Education:</label>
+        <select id="parents_education" name="parents_education" required>
+           
+            <option value="below 10th">Below 10th</option>
+            <option value="12th">12th</option>
+            <option value="UG">UG</option>
+            <option value="PG">PG</option>
+            <option value="Dr">Dr</option>
+        </select>
+        
+        <label for="personality">Personality:</label>
+        <input type="text" id="personality" name="personality" required>
+        
+        <label for="passion">Passion:</label>
+        <select id="passion" name="passion" required>
+           
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        
+        <label for="ott_time">OTT Time (hrs):</label>
+        <input type="number" id="ott_time" name="ott_time" min="0" required>
+        
+        <label for="sm_time">Social Media Time (hrs):</label>
+        <input type="number" id="sm_time" name="sm_time" min="0" required>
+        
+        <label for="travel_time">Travel Time (hrs):</label>
+        <input type="number" id="travel_time" name="travel_time" min="0" required>
+        
+        <label for="eduvids_time">Educational Videos Time (hrs):</label>
+        <input type="number" id="eduvids_time" name="eduvids_time" min="0" required>
+        
+        <label for="game_time">Game Time (hrs):</label>
+        <input type="number" id="game_time" name="game_time" min="0" required>
+        
+        <label for="extra_time">Extra Time (hrs):</label>
+        <input type="number" id="extra_time" name="extra_time" min="0" required>
+        
+        <label for="ai_usage">AI Usage:</label>
+        <select id="ai_usage" name="ai_usage" required>
+           
+            <option value="regular">Regular</option>
+            <option value="occasionally">Occasionally</option>
+            <option value="never">Never</option>
+        </select>
+        
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
